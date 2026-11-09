@@ -13,7 +13,10 @@ A PDF extraction pipeline for complex STEM textbooks containing inline and block
 ```
 ├── pyproject.toml
 ├── src/
-│   └── extractor.py                    # Core extraction and converter implementation
+│   ├── extractor.py                    # Core extraction and converter implementation
+│   └── pdf_extraction_pipeline/        # Installable package
+│       ├── __init__.py
+│       └── extractor.py
 └── tests/
     └── test_extractor.py               # Unit and integration test suite
 ```
@@ -28,11 +31,19 @@ Execute the test suite using `uv`:
 uv run pytest
 ```
 
-### 2. Usage Example
+### 2. CLI Usage
+
+When installed or within the uv environment, run the extraction tool via CLI:
+
+```bash
+uv run pdf-extraction-pipeline path/to/document.pdf --cache-dir ./cache
+```
+
+### 3. Python API Usage
 
 ```python
 from pathlib import Path
-from src.extractor import extract_pdf, get_converter
+from pdf_extraction_pipeline.extractor import extract_pdf, get_converter
 
 # Initialize or customize converter (optional, defaults to Granite float32 VLM)
 converter = get_converter()
