@@ -1,10 +1,17 @@
 from __future__ import annotations
 
-from pdf_extraction_pipeline.extractor import (
-    VlmPdfPipeline,
-    extract_pdf,
-    get_converter,
-    main,
+from pdf_extraction_pipeline.config import HardwareConfig
+from pdf_extraction_pipeline.services import (
+    BatchService,
+    CacheService,
+    ConverterService,
+    ExtractionService,
 )
 
-__all__ = ["get_converter", "extract_pdf", "VlmPdfPipeline", "main"]
+__all__ = [
+    "BatchService",
+    "CacheService",
+    "ConverterService",
+    "ExtractionService",
+    "HardwareConfig",
+]

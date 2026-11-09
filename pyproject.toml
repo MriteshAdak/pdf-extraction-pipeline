@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-pdf-extraction-pipeline = "pdf_extraction_pipeline.extractor:main"
+pdf-extraction-pipeline = "pdf_extraction_pipeline.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.13.7,<0.14.0"]
