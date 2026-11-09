@@ -1,0 +1,28 @@
+[project]
+name = "pdf-extraction-pipeline"
+version = "0.1.0"
+description = "STEM Textbook PDF Extraction Pipeline using Docling and Granite VLM"
+readme = "README.md"
+authors = [
+    { name = "MriteshAdak", email = "mriteshadak@outlook.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "docling[vlm]>=2.149.0",
+]
+
+[project.scripts]
+pdf-extraction-pipeline = "pdf_extraction_pipeline:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+testpaths = ["tests"]
