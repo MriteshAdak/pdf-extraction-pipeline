@@ -193,3 +193,41 @@ def extract_pdf(
     except Exception as err:
         logger.error("Failed to extract PDF '%s': %s", path.name, err, exc_info=True)
         raise RuntimeError(f"Error during PDF extraction for {path.name}: {err}") from err
+
+
+
+def main() -> None:
+    """CLI entry point to extract and cache a PDF using Docling VLM."""
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(
+        description="Extract STEM textbook PDF content using Docling and Granite Docling VLM."
+    )
+    parser.add_argument("pdf_path", type=Path, help="Path to input PDF file.")
+    parser.add_argument(
+        "--cache-dir",
+        type=Path,
+        default=Path("./cache"),
+        help="Directory to store/load extraction cache (default: ./cache).",
+    )
+    parser.add_argument(
+        "--device",
+        type=str,
+        default="auto",
+        choices=["auto", "cuda", "cpu"],
+        help="Compute device for VLM inference (default: auto).",
+    )
+    args = parser.parse_args()
+
+    try:
+        converter = get_converter(device=args.device)
+        result = extract_pdf(args.pdf_path, args.cache_dir, converter=converter)
+        print(f"Extraction successful: {len(result.get('body', {}))} top-level elements extracted.")
+    except Exception as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
