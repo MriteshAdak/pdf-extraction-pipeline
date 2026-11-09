@@ -13,10 +13,7 @@ A PDF extraction pipeline for complex STEM textbooks containing inline and block
 ```
 ├── pyproject.toml
 ├── src/
-│   ├── extractor.py                    # Core extraction and converter implementation
-│   └── pdf_extraction_pipeline/        # Package exports
-│       ├── __init__.py
-│       └── extractor.py
+│   └── extractor.py                    # Core extraction and converter implementation
 └── tests/
     └── test_extractor.py               # Unit and integration test suite
 ```
